@@ -4,7 +4,6 @@ import { UpdateClientDto } from './dto/update-client.dto';
 import { In, Repository } from 'typeorm';
 import { ClientEntity } from './entities/client.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class ClientsService {
@@ -14,7 +13,6 @@ export class ClientsService {
   ) {}
 
   async create(createClientDto: CreateClientDto): Promise<ClientEntity> {
-    createClientDto.id = uuidv4();
     createClientDto.createdAt = new Date();
     return await this.clientEntity.save(createClientDto);
   }
