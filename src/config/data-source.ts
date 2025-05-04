@@ -11,7 +11,7 @@ export const AppDataSource = new DataSource({
   database: 'railway',
   entities: [`${__dirname}/../**/*.entity{.ts,.js}`],
   migrations: [__dirname + '/migrations/*{.ts,.js}'],
-  synchronize: true,
+  synchronize: false,
   logging: true,
-  ssl: { rejectUnauthorized: false }
+  ssl: isProduction ? { rejectUnauthorized: false } : false,
 });
