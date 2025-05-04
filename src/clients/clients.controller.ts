@@ -3,16 +3,17 @@ import { ClientsService } from './clients.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { ClientEntity } from './entities/client.entity';
+import { SelectClientsDto } from './dto/select-client.sto';
 
 @Controller('clients')
 export class ClientsController {
   constructor(private readonly clientsService: ClientsService) {}
 
   @Post('select')
-  async selectClients(@Body() ids: string[]): Promise<ClientEntity[]> {
-    console.log('ids', ids);
-    return await this.clientsService.selectClients(ids);
-  }
+  async selectClients(@Body() body: SelectClientsDto): Promise<ClientEntity[]> {
+  return await this.clientsService.selectClients(body.ids);
+}
+
 
   @Post()
   async create(@Body() createClientDto: CreateClientDto): Promise<ClientEntity> {
